@@ -1,19 +1,20 @@
 import {View, Text, Image, StyleSheet} from 'react-native';
+import {blue, gray} from '../../styles/colors';
 
 export default function Category({data}) {
   return (
     <View style={styles.container}>
       {data.map((e, ind) => {
-        const path = e.path;
-        console.log(e.path);
+        const path = require(e.path);
+        console.log(path);
         return (
           <View key={e.id} style={styles.view}>
             <Image
-              source={{uri: path}}
+              source={{uri: `file://../../../assets/category/bread.png`}}
               resizeMode="contain"
               style={styles.img}
             />
-            <Text>{e.name}</Text>
+            <Text style={styles.text}>{e.name}</Text>
           </View>
         );
       })}
@@ -23,20 +24,25 @@ export default function Category({data}) {
 
 const styles = StyleSheet.create({
   container: {
-    width: 340,
-    height: 220,
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     alignItems: 'center',
-    backgroundColor: 'red',
+    paddingTop: 10,
   },
   view: {
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  img: {
     width: 80,
     height: 80,
+  },
+  img: {
+    width: 50,
+    height: 50,
+  },
+  text: {
+    color: gray,
+    fontSize: 13,
   },
 });
