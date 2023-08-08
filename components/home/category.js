@@ -1,21 +1,49 @@
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {blue, gray} from '../../styles/colors';
 
-export default function Category({data}) {
+const data = [
+  {
+    name: 'Hamburger',
+    path: require('../../assets/category/hamburger.png'),
+  },
+  {
+    name: 'Pizza',
+    path: require('../../assets/category/pizza.png'),
+  },
+  {
+    name: 'Noodles',
+    path: require('../../assets/category/ramen.png'),
+  },
+  {
+    name: 'Meat',
+    path: require('../../assets/category/meat.png'),
+  },
+  {
+    name: 'salad',
+    path: require('../../assets/category/salad.png'),
+  },
+  {
+    name: 'Dissert',
+    path: require('../../assets/category/cake.png'),
+  },
+  {
+    name: 'Drink',
+    path: require('../../assets/category/orange-juice.png'),
+  },
+  {
+    name: 'More',
+    path: require('../../assets/category/pancake.png'),
+  },
+];
+export default function Category() {
   return (
     <View style={styles.container}>
       {data.map((e, ind) => {
-        const path = require(e.path);
-        console.log(path);
         return (
-          <View key={e.id} style={styles.view}>
-            <Image
-              source={{uri: `file://../../../assets/category/bread.png`}}
-              resizeMode="contain"
-              style={styles.img}
-            />
+          <TouchableOpacity key={ind} style={styles.view}>
+            <Image source={e.path} resizeMode="contain" style={styles.img} />
             <Text style={styles.text}>{e.name}</Text>
-          </View>
+          </TouchableOpacity>
         );
       })}
     </View>
@@ -29,17 +57,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     alignItems: 'center',
-    paddingTop: 10,
+    columnGap: 15,
+    rowGap: 15,
+    paddingLeft:25,
+    paddingRight:25,
   },
   view: {
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    width: 80,
+    width: '20%',
     height: 80,
   },
   img: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
   },
   text: {
     color: gray,

@@ -28,3 +28,4 @@ export const food = [
     imgURL: '../assets/restaurent/img4.png',
   },
 ];
+

@@ -1,7 +1,6 @@
 import {Image, View, Text, StyleSheet, Pressable} from 'react-native';
-import Bag from '../assets/icons/bag.svg';
-import Notification from '../assets/icons/notification.svg';
-import {blue, green, gray, darkGray} from '../styles/colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {blue, green, gray, darkGray} from '../../styles/colors';
 export default function Header() {
   const name = 'lotfi Hallas';
 
@@ -9,7 +8,7 @@ export default function Header() {
     <View style={styles.container}>
       <View style={styles.view}>
         <Pressable>
-          <Image source={require('../assets/OIP.jpeg')} style={styles.img} />
+          <Image source={require('../../assets/OIP.jpeg')} style={styles.img} />
         </Pressable>
         <View style={styles.viewLast}>
           <Text style={styles.text}>Deliver to </Text>
@@ -18,10 +17,10 @@ export default function Header() {
       </View>
       <View style={styles.view}>
         <Pressable>
-          <Notification width={30} height={30} stroke={blue} />
+          <Ionicons name="notifications-outline" size={30} color={blue} />
         </Pressable>
         <Pressable>
-          <Bag width={30} height={30} stroke={blue} />
+          <Ionicons name="bag-outline" size={30} color={blue} />
         </Pressable>
       </View>
     </View>
@@ -31,11 +30,10 @@ export default function Header() {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    // height: 80,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 25,
+    padding:25,
   },
   img: {
     height: 50,
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
   },
   view: {
     flexDirection: 'row',
-    columnGap: 20,
+    columnGap: 25,
   },
   viewLast: {
     justifyContent: 'space-evenly',

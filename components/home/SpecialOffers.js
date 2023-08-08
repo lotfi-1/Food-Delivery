@@ -1,5 +1,5 @@
 import {View, Pressable, Text, Image, StyleSheet} from 'react-native';
-import {blue, green} from '../styles/colors';
+import {blue, green} from '../../styles/colors';
 
 const SpecialOffers = () => {
   return (
@@ -13,7 +13,7 @@ const SpecialOffers = () => {
       <Pressable>
         <Image
           style={styles.img}
-          source={require('../assets/ads.png')}
+          source={require('../../assets/ads.png')}
           resizeMode="contain"
         />
       </Pressable>
@@ -26,6 +26,8 @@ const styles = StyleSheet.create({
   continue: {
     width: '100%',
     rowGap: 20,
+    padding: 25,
+    paddingTop: 15,
   },
   View: {
     flexDirection: 'row',

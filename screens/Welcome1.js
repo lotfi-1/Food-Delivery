@@ -33,9 +33,7 @@ export default function Welcome1({navigation}) {
   });
   return (
     <View style={styles.container}>
-      <Pressable
-        style={{flex: 1}}
-        onPress={() => navigation.navigate('loginpone')}>
+      <View style={{flex: 1}}>
         <ImageBackground
           style={styles.background}
           resizeMode="cover"
@@ -53,7 +51,7 @@ export default function Welcome1({navigation}) {
             </Text>
           </View>
         </ImageBackground>
-      </Pressable>
+      </View>
     </View>
   );
 }

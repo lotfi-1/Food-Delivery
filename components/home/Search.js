@@ -1,6 +1,6 @@
 import {StyleSheet, Pressable, TextInput, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {darkGray, gray, lightGray, lightGreen} from '../styles/colors';
+import {darkGray, gray, lightGray, lightGreen} from '../../styles/colors';
 import {useState} from 'react';
 
 export default function Search() {
@@ -23,7 +23,7 @@ export default function Search() {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    // width: '100%',
     height: 40,
     flexDirection: 'row',
     alignItems: 'center',
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderRadius: 15,
     backgroundColor: lightGreen,
+    marginLeft: 25,
+    marginRight: 25,
   },
   view: {
     justifyContent: 'center',
