@@ -1,12 +1,13 @@
 import {Image, View, Text, StyleSheet, Pressable} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {blue, green, gray, darkGray} from '../../styles/colors';
-export default function Header() {
+import {blue, gray} from '../../styles/colors';
+import { useNavigation } from '@react-navigation/native';
+export default function Header({customer}) {
   const name = 'lotfi Hallas';
-
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={styles.view}>
+      <View style={[styles.view, {columnGap: 20}]}>
         <Pressable>
           <Image source={require('../../assets/OIP.jpeg')} style={styles.img} />
         </Pressable>
@@ -15,12 +16,12 @@ export default function Header() {
           <Text style={styles.name}>{name}</Text>
         </View>
       </View>
-      <View style={styles.view}>
+      <View style={[styles.view, {columnGap: 30}]}>
         <Pressable>
-          <Ionicons name="notifications-outline" size={30} color={blue} />
+          <Ionicons name="notifications-outline" size={28} color={blue} />
         </Pressable>
         <Pressable>
-          <Ionicons name="bag-outline" size={30} color={blue} />
+          <Ionicons name="bag-outline" size={28} color={blue} />
         </Pressable>
       </View>
     </View>
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding:25,
+    padding: 20,
   },
   img: {
     height: 50,
@@ -42,7 +43,6 @@ const styles = StyleSheet.create({
   },
   view: {
     flexDirection: 'row',
-    columnGap: 25,
   },
   viewLast: {
     justifyContent: 'space-evenly',

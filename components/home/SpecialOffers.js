@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     width: '100%',
     rowGap: 20,
     padding: 25,
-    paddingTop: 15,
+    paddingTop: 0,
   },
   View: {
     flexDirection: 'row',

@@ -10,6 +10,7 @@ import {
   lightGray,
   lightGreen,
   white,
+  darkGray,
 } from '../../styles/colors';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -68,7 +69,11 @@ const data = [
 
 export default function FoodList({horizontal, children}) {
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        horizontal ? {paddingBottom: 0} : {paddingBottom: 35},
+      ]}>
       <View style={styles.head}>
         <Text style={styles.headTitle}>{children}</Text>
         <Pressable>
@@ -102,7 +107,8 @@ function Item({item, horizontal}) {
           {item.name}
         </Text>
         <View style={styles.view}>
-          <Text style={styles.text}>{item.distence} |</Text>
+          <Text style={styles.text}>{item.distence}</Text>
+          <Text style={styles.text}>|</Text>
           <Fontisto name="star" size={14} color={gold} />
           <Text style={styles.text}>
             {item.rating} ({item.numRating})
@@ -135,11 +141,12 @@ function Item({item, horizontal}) {
 
 const row = StyleSheet.create({
   box: {
-    width: 170,
+    width: 180,
     padding: 10,
     margin: 10,
     rowGap: 8,
     position: 'relative',
+    alignItems: 'center',
   },
   boxImg: {
     width: 150,
@@ -151,8 +158,8 @@ const column = StyleSheet.create({
   box: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: 25,
-    paddingRight: 25,
+    // paddingLeft: 25,
+    paddingRight: 15,
     columnGap: 20,
     margin: 15,
     marginTop: 0,
@@ -171,7 +178,7 @@ const styles = StyleSheet.create({
     width: '100%',
     rowGap: 15,
     marginTop: 20,
-    paddingBottom: 35,
+    // backgroundColor:'red'
   },
   head: {
     flexDirection: 'row',
@@ -207,11 +214,13 @@ const styles = StyleSheet.create({
   boxView: {
     rowGap: 5,
     flex: 1,
+    justifyContent: 'space-between',
+    // backgroundColor: 'red',
   },
   view: {
     flexDirection: 'row',
     alignItems: 'center',
-    columnGap: 5,
+    columnGap: 8,
   },
   boxFooter: {
     flexDirection: 'row',

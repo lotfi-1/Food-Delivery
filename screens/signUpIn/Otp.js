@@ -4,15 +4,17 @@ import {View, Text, StyleSheet, Pressable, TextInput} from 'react-native';
 import Right from '../../assets/icons/right.svg';
 import GoBack from '../../components/GoBack';
 import {blue, gray, green, lightGray} from '../../styles/colors';
-import {createContext, useEffect, useRef, useState} from 'react';
+import {createContext, useContext, useEffect, useRef, useState} from 'react';
 import Button from '../../components/Button';
 import VerifyCodeInput from '../../components/codeInput';
 import {useRoute} from '@react-navigation/native';
 import {signUp} from '../../utils/login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Customer} from '../../context/customer';
 export const pinContext = createContext();
 
 export default function Otp({navigation}) {
+  const {setCustomer} = useContext(Customer);
   const route = useRoute();
   const {phone, password, name, remember} = route.params;
   const [time, setTime] = useState(60);
@@ -76,7 +78,12 @@ export default function Otp({navigation}) {
                   code: otp.current,
                 });
                 if (remember) await AsyncStorage.setItem('token', result.token);
-                navigation.navigate('home');
+                console.log(result);
+                setCustomer(result.customer);
+                navigation.reset({
+                  index: 0,
+                  routes: [{name: 'home-navigation'}],
+                });
               }
             } catch (error) {
               // setError(true);

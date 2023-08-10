@@ -3,11 +3,11 @@
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from './home/Home';
-import Orders from './home/Orders';
-import Messages from './home/Message';
-import Wallet from './home/Wallet';
-import Profile from './home/Profile';
+import Home from './app/Home';
+import Orders from './app/Orders';
+import Messages from './app/Message';
+import Wallet from './app/Wallet';
+import Profile from './app/Profile';
 
 import {darkGray, gray, green} from '../styles/colors';
 
@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 export default function HomeNavigation() {
   return (
     <Tab.Navigator
-      initialRouteName="home"
+      // initialRouteName="home"
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarActiveTintColor: green,
@@ -54,7 +54,11 @@ export default function HomeNavigation() {
         component={Orders}
         options={{
           tabBarIcon: ({size, color, focused}) => (
-            <Ionicons name={focused ? 'reorder-four' : 'reorder-four-outline' } color={color} size={size} />
+            <Ionicons
+              name={focused ? 'reorder-four' : 'reorder-four-outline'}
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
@@ -65,9 +69,7 @@ export default function HomeNavigation() {
           tabBarIcon: ({size, color, focused}) => (
             <Ionicons
               name={
-                focused
-                  ? 'chatbubble-ellipses'
-                  : 'chatbubble-ellipses-outline'
+                focused ? 'chatbubble-ellipses' : 'chatbubble-ellipses-outline'
               }
               color={color}
               size={size}

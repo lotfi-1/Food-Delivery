@@ -1,36 +1,11 @@
 /** @format */
 
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {StyleSheet, View, Text, ImageBackground, Pressable} from 'react-native';
-import {BASE_URL} from '../config/Urls';
-import errorHandler from '../utils/errorHandler';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function Welcome1({navigation}) {
-  const checkToken = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      const response = await fetch(`${BASE_URL}/protected`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      if (!response.ok) {
-        navigation.navigate('loginpone');
-      } else {
-        const phone = await response.json();
-        navigation.navigate('home-navigation');
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    // AsyncStorage.removeItem('token');
-    const id = setTimeout(() => navigation.navigate('home-navigation'), 1000);
-
-    return () => clearTimeout(id);
-  });
+ 
   return (
     <View style={styles.container}>
       <View style={{flex: 1}}>

@@ -5,6 +5,7 @@ import {
   FlatList,
   StyleSheet,
   SafeAreaView,
+  StatusBar,
   SectionList,
   ScrollView,
   Pressable,
@@ -14,10 +15,11 @@ import Header from '../../components/home/Header';
 import Search from '../../components/home/Search';
 import {gray, green, white} from '../../styles/colors';
 import SpecialOffers from '../../components/home/SpecialOffers';
-import {useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import {BASE_URL} from '../../config/Urls';
 import Category from '../../components/home/category';
 import FoodList from '../../components/home/FoodList';
+import {Customer} from '../../context/customer';
 
 const myComponents = [
   {
@@ -34,15 +36,17 @@ const myComponents = [
   },
   {
     id: 4,
-    comp: <FoodList horizontal={true}>Discount Guaranteed</FoodList>,
+    comp: <FoodList horizontal={true}>Discount Guaranteed 👌</FoodList>,
   },
   {
     id: 5,
-    comp: <FoodList horizontal={false}>Recommended for you</FoodList>,
+    comp: <FoodList horizontal={false}>Best Rating 😍</FoodList>,
   },
 ];
 
 export default function Home() {
+  const {customer} = useContext(Customer);
+  console.log(customer);
   // const [data ,setData] = useState([]);
   // console.log(data)
   // const fetchData = async () => {

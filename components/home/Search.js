@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
     backgroundColor: lightGreen,
     marginLeft: 25,
     marginRight: 25,
+    marginTop: 30,
+    marginBottom: 30,
   },
   view: {
     justifyContent: 'center',

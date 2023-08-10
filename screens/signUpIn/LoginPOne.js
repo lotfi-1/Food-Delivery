@@ -1,8 +1,8 @@
 import React from 'react';
-import { Pressable, StyleSheet, View, Image, Text } from 'react-native';
+import {Pressable, StyleSheet, View, Image, Text} from 'react-native';
 import GoBack from '../../components/GoBack';
 import Right from '../../assets/icons/right.svg';
-import {lightGray, blue } from '../../styles/colors';
+import {lightGray, blue} from '../../styles/colors';
 
 import Apple from '../../assets/icons/apple.svg';
 import Google from '../../assets/icons/google.svg';
@@ -11,14 +11,10 @@ import Button from '../../components/Button';
 import Or from '../../components/Or';
 import Footer from '../../components/footer';
 
-export default function LoginPOne({ navigation }) {
+export default function LoginPOne({navigation}) {
   return (
     <View style={styles.container}>
-      <GoBack>
-        <Pressable style={{ width: 25 }} onPress={() => navigation.goBack()}>
-          <Right />
-        </Pressable>
-      </GoBack>
+      <GoBack />
 
       <View style={styles.view}>
         <Image
@@ -39,18 +35,22 @@ export default function LoginPOne({ navigation }) {
           <Apple width={28} height={28} />
           <Text style={styles.linkText}>Continue with Apple</Text>
         </Pressable>
-        <Or style={{ marginBottom: 20 }}>Or</Or>
-        <Button style={{ width: '100%' }} handelClick={() => navigation.navigate('login')}>Sign in width Phone Number</Button>
+        <Or style={{marginBottom: 20}}>Or</Or>
+        <Button
+          style={{width: '100%'}}
+          handelClick={() => navigation.navigate('login')}>
+          Sign in width Phone Number
+        </Button>
 
         <Footer
           navigation={navigation}
           text="Sign up"
           name="register"
-          style={{ marginTop: 30 }}>
+          style={{marginTop: 30}}>
           Don't have an account?
         </Footer>
       </View>
-    </View >
+    </View>
   );
 }
 
