@@ -11,15 +11,15 @@ import {
   Pressable,
 } from 'react-native';
 
-import Header from '../../components/home/Header';
-import Search from '../../components/home/Search';
-import {gray, green, white} from '../../styles/colors';
-import SpecialOffers from '../../components/home/SpecialOffers';
+import Header from '../../../components/home/Header';
+import Search from '../../../components/home/Search';
+import {gray, green, white} from '../../../styles/colors';
+import SpecialOffers from '../../../components/home/SpecialOffers';
 import {useContext, useEffect, useRef, useState} from 'react';
-import {BASE_URL} from '../../config/Urls';
-import Category from '../../components/home/category';
-import FoodList from '../../components/home/FoodList';
-import {Customer} from '../../context/customer';
+import {BASE_URL} from '../../../config/Urls';
+import Category from '../../../components/home/category';
+import FoodList from '../../../components/home/FoodList';
+import {Customer} from '../../../context/customer';
 
 const myComponents = [
   {

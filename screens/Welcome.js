@@ -6,56 +6,17 @@ import {
   ImageBackground,
   Easing,
 } from 'react-native';
-import {BASE_URL} from '../config/Urls';
-import errorHandler from '../utils/errorHandler';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import checkToken from '../utils/checkToken';
 import {Customer} from '../context/customer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Welcome({navigation}) {
+  const {setCustomer} = useContext(Customer);
+
   const fadeIn = useRef(new Animated.Value(0)).current;
   const logoFadeIn = useRef(new Animated.Value(0)).current;
   const rotateAnim = useRef(new Animated.Value(0)).current;
 
-  const {setCustomer} = useContext(Customer);
-  const checkToken = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      if (token) {
-        const response = await fetch(`${BASE_URL}/protected`, {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
-        if (!response.ok) {
-          navigation.reset({
-            index: 0,
-            routes: [{name: 'loginpone'}],
-          });
-        } else {
-          const customerData = await response.json();
-          setCustomer(customerData.customer);
-          navigation.reset({
-            index: 0,
-            routes: [
-              {
-                name: 'home-navigation',
-                state: {
-                  routes: [{name: 'home'}],
-                },
-              },
-            ],
-          });
-        }
-      } else {
-        navigation.reset({
-          index: 0,
-          routes: [{name: 'loginpone'}],
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
   // useEffect(() => {
   //   // AsyncStorage.removeItem('token');
   //   const id = setTimeout(() => checkToken(), 3000);
@@ -83,7 +44,7 @@ export default function Welcome({navigation}) {
 
   const startAnimations = () => {
     Animated.sequence([display(fadeIn, 1, 2000), onParallel()]).start(() =>
-      checkToken(),
+      checkToken(navigation, setCustomer),
     );
   };
   const onParallel = () => {

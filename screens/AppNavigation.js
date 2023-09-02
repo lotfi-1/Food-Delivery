@@ -3,20 +3,19 @@
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from './app/Home';
+import Home from './app/home/Home';
 import Orders from './app/Orders';
 import Messages from './app/Message';
 import Wallet from './app/Wallet';
 import Profile from './app/Profile';
-
+import HomeNavigation from './app/HomeNavigation';
 import {darkGray, gray, green} from '../styles/colors';
 
 const Tab = createBottomTabNavigator();
 
-export default function HomeNavigation() {
+export default function AppNavigation() {
   return (
     <Tab.Navigator
-      // initialRouteName="home"
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarActiveTintColor: green,
@@ -37,8 +36,8 @@ export default function HomeNavigation() {
         tabBarLabelStyle: {fontSize: 10},
       })}>
       <Tab.Screen
-        name="home"
-        component={Home}
+        name="home-navigation"
+        component={HomeNavigation}
         options={{
           tabBarIcon: ({size, color, focused}) => (
             <Ionicons

@@ -33,7 +33,6 @@ export const signIn = async (props) => {
 };
 
 export const signUp = async (props) => {
-  console.log(props)
   if (!props.phone || !props.password || !props.name || !props.code)
     throw new Error("Invalid Phone Number, Password, Name, or Code");
   return apiCall("/register/verify", props);

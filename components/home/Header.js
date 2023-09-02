@@ -1,7 +1,7 @@
 import {Image, View, Text, StyleSheet, Pressable} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {blue, gray} from '../../styles/colors';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 export default function Header({customer}) {
   const name = 'lotfi Hallas';
   const navigation = useNavigation();
@@ -17,7 +17,7 @@ export default function Header({customer}) {
         </View>
       </View>
       <View style={[styles.view, {columnGap: 30}]}>
-        <Pressable>
+        <Pressable onPress={() => navigation.navigate('notification')}>
           <Ionicons name="notifications-outline" size={28} color={blue} />
         </Pressable>
         <Pressable>

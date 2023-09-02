@@ -17,22 +17,21 @@ export default function Otp({navigation}) {
   const {setCustomer} = useContext(Customer);
   const route = useRoute();
   const {phone, password, name, remember} = route.params;
-  const [time, setTime] = useState(60);
   const otp = useRef({});
+  const [time, setTime] = useState(30);
   const [resend, setResend] = useState(false);
   const [err, setError] = useState(false);
-  const sendOtp = async () => {};
+
   useEffect(() => {
     let id;
-    if (otp) {
-      sendOtp();
-    } else if (time !== 0) {
+    if (time !== 0) {
       id = setTimeout(() => setTime(time - 1), 1000);
     } else {
       setResend(true);
     }
     () => clearTimeout(id);
   }, [time]);
+
   return (
     <View style={styles.container}>
       <GoBack>
@@ -45,11 +44,11 @@ export default function Otp({navigation}) {
       </GoBack>
 
       <View style={styles.view}>
-        <Text style={styles.text}>Code has been sent to 'format phone'</Text>
+        <Text style={styles.text}>Code has been sent to {phone}</Text>
         {resend ? (
           <Pressable
             onPress={() => {
-              setTime(60);
+              setTime(30);
               setResend(false);
             }}>
             <Text style={styles.resend}>Resend Code</Text>
@@ -78,15 +77,14 @@ export default function Otp({navigation}) {
                   code: otp.current,
                 });
                 if (remember) await AsyncStorage.setItem('token', result.token);
-                console.log(result);
                 setCustomer(result.customer);
                 navigation.reset({
                   index: 0,
-                  routes: [{name: 'home-navigation'}],
+                  routes: [{name: 'app-navigation'}],
                 });
               }
             } catch (error) {
-              // setError(true);
+              setError(true);
             }
           }}>
           Verify

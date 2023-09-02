@@ -131,7 +131,10 @@ export default function Register() {
               const remember = check.current.getValue();
               if (result)
                 navigation.navigate('otp', {
-                  phone, password, name, remember,
+                  phone,
+                  password,
+                  name,
+                  remember,
                 });
               // await AsyncStorage.setItem("token", result.token);
             } catch (error) {

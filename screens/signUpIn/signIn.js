@@ -9,7 +9,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import GoBack from '../../components/GoBack';
 import Right from '../../assets/icons/right.svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -34,6 +34,7 @@ import CheckBoxComp from '../../components/CheckBox';
 import {signUpIn} from '../../styles/globaleStyle';
 import Eye from '../../components/eye';
 import {signIn} from '../../utils/login';
+import {Customer} from '../../context/customer';
 
 export default function Login({navigation}) {
   const phoneRef = useRef(null);
@@ -42,6 +43,7 @@ export default function Login({navigation}) {
   const [open, setOpen] = useState(false);
   const [err, setError] = useState(false);
   const check = useRef();
+  const {setCustomer} = useContext(Customer);
 
   return (
     <View style={signUpIn.container}>
@@ -97,31 +99,27 @@ export default function Login({navigation}) {
               color: darkGray,
             }}
           />
-            <View
-              style={[
-                signUpIn.inputView,
-                err ? {borderColor: error} : {borderColor: lightGray},
-                {position: 'relative', paddingLeft: 0},
-              ]}>
-              <TextInput
-                style={[signUpIn.input, {paddingRight: 40}]}
-                value={password}
-                secureTextEntry={!open ? true : false}
-                onChangeText={text => setPassword(text)}
-                keyboardType="default"
-                placeholder="Password"
-                placeholderTextColor={gray}
-                onFocus={() => {
-                  if (err) setError(false);
-                }}
-              />
-              <Eye
-                open={open}
-                handelClick={() => setOpen(!open)}
-                color={green}
-              />
-              {err && <Error>invalid Phone Number Or Password</Error>}
-            </View>
+          <View
+            style={[
+              signUpIn.inputView,
+              err ? {borderColor: error} : {borderColor: lightGray},
+              {position: 'relative', paddingLeft: 0},
+            ]}>
+            <TextInput
+              style={[signUpIn.input, {paddingRight: 40}]}
+              value={password}
+              secureTextEntry={!open ? true : false}
+              onChangeText={text => setPassword(text)}
+              keyboardType="default"
+              placeholder="Password"
+              placeholderTextColor={gray}
+              onFocus={() => {
+                if (err) setError(false);
+              }}
+            />
+            <Eye open={open} handelClick={() => setOpen(!open)} color={green} />
+            {err && <Error>invalid Phone Number Or Password</Error>}
+          </View>
         </KeyboardAvoidingView>
 
         <CheckBoxComp style={{marginBottom: 20}} ref={check}>
@@ -136,7 +134,8 @@ export default function Login({navigation}) {
               const result = await signIn({phone, password});
               if (check.current.getValue())
                 await AsyncStorage.setItem('token', result.token);
-              navigation.navigate('home-navigation');
+              setCustomer(result.customer);
+              navigation.navigate('app-navigation');
             } catch (error) {
               setError(true);
             }
